@@ -1,13 +1,25 @@
 import { createRouter, createWebHistory } from  'vue-router';
 
-import CoachDetail from './pages/coaches/CoachDetail';
+// import CoachDetail from './pages/coaches/CoachDetail';
 import CoachesList from './pages/coaches/CoachesList';
-import CoachRegistration from './pages/coaches/CoachRegistration';
-import ContactCoach from './pages/requests/ContactCoach';
-import RequestsReceived from './pages/requests/RequestsReceived';
+//import CoachRegistration from './pages/coaches/CoachRegistration';
+//import ContactCoach from './pages/requests/ContactCoach';
+//import RequestsReceived from './pages/requests/RequestsReceived';
 import NotFound from './pages/NotFound';
-import UserAuth from '@/pages/auth/UserAuth';
+//import UserAuth from '@/pages/auth/UserAuth';
 import store from './store/index';
+
+const CoachDetail = () => import ('./pages/coaches/CoachDetail');
+
+const CoachRegistration = () => import('./pages/coaches/CoachRegistration');
+
+const ContactCoach = () => import('./pages/requests/ContactCoach');
+
+const RequestsReceived = () => import('./pages/requests/RequestsReceived');
+
+const UserAuth = () => import('@/pages/auth/UserAuth');
+
+
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,7 +32,8 @@ const router = createRouter({
       props: true,
       children: [
         { path: 'contact', component: ContactCoach }, // /coaches/c1/contact
-      ]},
+      ]
+    },
     { path: '/register', component: CoachRegistration, meta: { requiresAuth: true}},
     { path: '/requests', component: RequestsReceived, meta: { requiresAuth: true} },
     { path: '/auth', component: UserAuth, meta: { requiresUnauth: true}},
